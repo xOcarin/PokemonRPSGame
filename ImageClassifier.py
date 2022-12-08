@@ -59,8 +59,11 @@ while True:
         cv2.putText(img, classNames[id], (50, 50), cv2.FONT_HERSHEY_COMPLEX, 1 , (0, 255, 0), thickness = 2)
 
     cv2.imshow('Capture', img)
-    cv2.waitKey(1)
 
+    # exit program when pressing 'q'
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        cv2.destroyAllWindows()
+        break
 
 
 
