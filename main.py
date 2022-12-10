@@ -1,14 +1,45 @@
-import game
-import ImageClassifier as ic
+from game import Game
+from ImageClassifier import ImageClassifier
+import threading
+import time
+import random
 
-# todo:
 if __name__ == '__main__':
-    pass
-    while(1):
-        pass
+
+    game = Game()
+
+    class ic_thread(threading.Thread):
+        def __init__(self, actionOnFound):
+            threading.Thread.__init__(self)
+            self.ic = ImageClassifier(actionOnFound)
+    
+        def run(self):
+            self.ic.run()
+
+    def whenPokemonDetected(x):
+        val = -1
+        match(x):
+            case 'bulbasaur_card':
+                val = 0
+            case 'tepig_card':
+                val = 1
+            case 'tododile_card':
+                val = 2
+        game.desired_pokemon = val
+
+    ic = ic_thread(whenPokemonDetected);
+    ic.start()
+
+    game.run()
+
+
+
+
         # boot up the game and image classifier
         # wait until image classifier returns a value
             # this value will be the pokemon the user played
         # start game event with desired pokemon
-        # run all calculations and stuff
+
+        # todo:
+        # run all calculations and stuff (animations?)
         # repeat until game finishes        

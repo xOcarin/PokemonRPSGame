@@ -38,8 +38,10 @@ def flip_image(img):
 
 class Game():
 
-    # the pokemon that the user wants to play
-    desired_pokemon = None
+    def __init__(self):
+        # the pokemon that the user wants to play
+        self.desired_pokemon = None
+
 
     # function to render each frame
     def draw_window(pokemon):
@@ -76,7 +78,7 @@ class Game():
         
 
     # maingame loop
-    def main():
+    def run(self):
         clock = pygame.time.Clock()
 
         # condition to allow exiting the game
@@ -92,12 +94,14 @@ class Game():
                     run = False
 
             # update the window
-            Game.draw_window(Game.desired_pokemon)
+            Game.draw_window(self.desired_pokemon)
         pygame.quit()
 
 
 
 if __name__ == '__main__':
+
+    game = Game()
 
     # thread to run async task, just sets Game.desired_pokemon after waiting 5 seconds
     # this simulates a return from imageclassifier
@@ -108,11 +112,11 @@ if __name__ == '__main__':
         def run(self):
             time.sleep(5)
             val = random.randint(0,2)  # inclusive
-            Game.desired_pokemon = val
+            game.desired_pokemon = val
             print("pokemon chosen (card detected): ", val)  
 
     thread2 = thread();
     thread2.start()
 
 
-    Game.main()
+    game.run()
