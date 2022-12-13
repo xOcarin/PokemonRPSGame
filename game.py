@@ -40,6 +40,12 @@ bulbaB_animation = [bulbaBack.parse_sprite('Layer 2.png'), bulbaBack.parse_sprit
                    ,bulbaBack.parse_sprite('Layer 8.png') ,bulbaBack.parse_sprite('Layer 9.png') ,bulbaBack.parse_sprite('Layer 10.png')
                    ,bulbaBack.parse_sprite('Layer 11.png') ,bulbaBack.parse_sprite('Layer 12.png'),bulbaBack.parse_sprite('Layer 13.png')]
 
+#obtaining sprites for totodile
+totoFront = Spritesheet('assets/toto_spritesheet.png')
+totoF_animation = [bulbaFront.parse_sprite('Layer 2.png'), bulbaFront.parse_sprite('Layer 3.png'),bulbaFront.parse_sprite('Layer 4.png'),
+                   bulbaFront.parse_sprite('Layer 5.png'),bulbaFront.parse_sprite('Layer 6.png'),bulbaFront.parse_sprite('Layer 7.png')
+                   ,bulbaFront.parse_sprite('Layer 8.png') ,bulbaFront.parse_sprite('Layer 9.png') ,bulbaFront.parse_sprite('Layer 10.png')
+                   ,bulbaFront.parse_sprite('Layer 11.png') ,bulbaFront.parse_sprite('Layer 12.png')]
 
 
 #index for animation array
