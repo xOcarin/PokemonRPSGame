@@ -89,7 +89,7 @@ class Game():
 
         # draw opp
 
-        if index < 10:
+        if index < 11:
             skip = skip + .5
 
             if skip % 2 == 0:  #used to artificially slow down the animation
