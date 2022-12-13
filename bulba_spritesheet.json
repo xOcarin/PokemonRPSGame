@@ -1,0 +1,100 @@
+{"frames": {
+
+"Layer 2.png":
+{
+	"frame": {"x":0,"y":0,"w":81,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":76},
+	"sourceSize": {"w":81,"h":76}
+},
+"Layer 3.png":
+{
+	"frame": {"x":0,"y":76,"w":81,"h":70},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":70},
+	"sourceSize": {"w":81,"h":70}
+},
+"Layer 4.png":
+{
+	"frame": {"x":0,"y":146,"w":81,"h":67},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":67},
+	"sourceSize": {"w":81,"h":67}
+},
+"Layer 5.png":
+{
+	"frame": {"x":0,"y":213,"w":81,"h":70},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":70},
+	"sourceSize": {"w":81,"h":70}
+},
+"Layer 6.png":
+{
+	"frame": {"x":0,"y":283,"w":81,"h":67},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":67},
+	"sourceSize": {"w":81,"h":67}
+},
+"Layer 7.png":
+{
+	"frame": {"x":0,"y":350,"w":81,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":76},
+	"sourceSize": {"w":81,"h":76}
+},
+"Layer 8.png":
+{
+	"frame": {"x":0,"y":426,"w":82,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":82,"h":76},
+	"sourceSize": {"w":82,"h":76}
+},
+"Layer 9.png":
+{
+	"frame": {"x":0,"y":502,"w":81,"h":70},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":70},
+	"sourceSize": {"w":81,"h":70}
+},
+"Layer 10.png":
+{
+	"frame": {"x":0,"y":572,"w":82,"h":67},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":82,"h":67},
+	"sourceSize": {"w":82,"h":67}
+},
+"Layer 11.png":
+{
+	"frame": {"x":0,"y":639,"w":81,"h":70},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":70},
+	"sourceSize": {"w":81,"h":70}
+},
+"Layer 12.png":
+{
+	"frame": {"x":0,"y":709,"w":81,"h":68},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":68},
+	"sourceSize": {"w":81,"h":68}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "bulba_spritesheet.png",
+	"format": "RGBA8888",
+	"size": {"w":82,"h":777},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:83bc0a0eeabdcb30e5ac12fcf0bfec0f:43e0d67e6308744dce6ef2d3cace8aa6:67d30aba71add85182e77ca8007339e5$"
+}
+}
