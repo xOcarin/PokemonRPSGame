@@ -3,6 +3,7 @@ import os
 import time
 import threading
 import random
+from spritesheet import Spritesheet
 
 # link to tutorial i used:
 # https://youtu.be/jO6qQDNa2UY
@@ -18,13 +19,30 @@ WHITE = (255,255,255)
 SKY_BLUE = (0,200,255)
 
 # framerate we want the game to use
-FPS = 60
+FPS = 30
 
 # load in assets
 BACKGROUND = pygame.image.load(os.path.join("assets", "background.png"))
 _bulbasaur = pygame.image.load(os.path.join("data", "cards", "bulbasaur_card.png"))   # todo: load actual pokemon, not card
 _tepig = pygame.image.load(os.path.join("data", "cards", "tepig_card.png"))           # also will need another image of the pokemons back
 _tododile = pygame.image.load(os.path.join("data", "cards", "tododile_card.png"))
+
+#obtaining sprites for bulbasaur
+my_spritesheet = Spritesheet('bulba_spritesheet.png')
+bulba_animation = [my_spritesheet.parse_sprite('Layer 2.png'), my_spritesheet.parse_sprite('Layer 3.png'),my_spritesheet.parse_sprite('Layer 4.png'),
+                   my_spritesheet.parse_sprite('Layer 5.png'),my_spritesheet.parse_sprite('Layer 6.png'),my_spritesheet.parse_sprite('Layer 7.png')
+                   ,my_spritesheet.parse_sprite('Layer 8.png') ,my_spritesheet.parse_sprite('Layer 9.png') ,my_spritesheet.parse_sprite('Layer 10.png')
+                   ,my_spritesheet.parse_sprite('Layer 11.png') ,my_spritesheet.parse_sprite('Layer 12.png')]
+
+
+
+#index for animation array
+index = 0
+skip = .5
+
+
+
+
 # resizing pokemon
 BULBASAUR = pygame.transform.scale(_bulbasaur, (120, 178))
 TEPIG = pygame.transform.scale(_tepig, (120, 178))
@@ -34,6 +52,7 @@ TODODILE = pygame.transform.scale(_tododile, (120, 178))
 # used for friendly pokemon, once back of pokemon image exists, no longer need this
 def flip_image(img):
     return pygame.transform.flip(img, flip_x=True, flip_y=False)
+
     
 
 class Game():
@@ -43,9 +62,15 @@ class Game():
         self.desired_pokemon = None
 
 
+
+
+
+
     # function to render each frame
     def draw_window(pokemon):
 
+        global index
+        global skip
         # get wanted pokemon img
         # for now, just using 0,1,2 for pokemon values, should make enum
         choice = None
@@ -63,7 +88,18 @@ class Game():
         WIN.blit(BACKGROUND, (0,0))
 
         # draw opp
-        WIN.blit(BULBASAUR, (525,75))
+
+        if index < 10:
+            skip = skip + .5
+
+            if skip % 2 == 0:  #used to artificially slow down the animation
+                index = index + 1
+
+            if(index > 10): #if removed, bulbasuar will stop moving, like he would in the games. May remove.
+                index = 0
+
+        WIN.blit(bulba_animation[index], (550, 150))
+        print(index)
 
         # draw friendly, if picked
         if not choice == None:
@@ -94,6 +130,8 @@ class Game():
                     run = False
 
             # update the window
+
+
             Game.draw_window(self.desired_pokemon)
         pygame.quit()
 
