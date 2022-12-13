@@ -28,17 +28,26 @@ _tepig = pygame.image.load(os.path.join("data", "cards", "tepig_card.png"))     
 _tododile = pygame.image.load(os.path.join("data", "cards", "tododile_card.png"))
 
 #obtaining sprites for bulbasaur
-my_spritesheet = Spritesheet('bulba_spritesheet.png')
-bulba_animation = [my_spritesheet.parse_sprite('Layer 2.png'), my_spritesheet.parse_sprite('Layer 3.png'),my_spritesheet.parse_sprite('Layer 4.png'),
-                   my_spritesheet.parse_sprite('Layer 5.png'),my_spritesheet.parse_sprite('Layer 6.png'),my_spritesheet.parse_sprite('Layer 7.png')
-                   ,my_spritesheet.parse_sprite('Layer 8.png') ,my_spritesheet.parse_sprite('Layer 9.png') ,my_spritesheet.parse_sprite('Layer 10.png')
-                   ,my_spritesheet.parse_sprite('Layer 11.png') ,my_spritesheet.parse_sprite('Layer 12.png')]
+bulbaFront = Spritesheet('assets/bulba_spritesheet.png')
+bulbaF_animation = [bulbaFront.parse_sprite('Layer 2.png'), bulbaFront.parse_sprite('Layer 3.png'),bulbaFront.parse_sprite('Layer 4.png'),
+                   bulbaFront.parse_sprite('Layer 5.png'),bulbaFront.parse_sprite('Layer 6.png'),bulbaFront.parse_sprite('Layer 7.png')
+                   ,bulbaFront.parse_sprite('Layer 8.png') ,bulbaFront.parse_sprite('Layer 9.png') ,bulbaFront.parse_sprite('Layer 10.png')
+                   ,bulbaFront.parse_sprite('Layer 11.png') ,bulbaFront.parse_sprite('Layer 12.png')]
+
+bulbaBack = Spritesheet('assets/bulbaB_spritesheet.png')
+bulbaB_animation = [bulbaBack.parse_sprite('Layer 2.png'), bulbaBack.parse_sprite('Layer 3.png'),bulbaBack.parse_sprite('Layer 4.png'),
+                   bulbaBack.parse_sprite('Layer 5.png'),bulbaBack.parse_sprite('Layer 6.png'),bulbaBack.parse_sprite('Layer 7.png')
+                   ,bulbaBack.parse_sprite('Layer 8.png') ,bulbaBack.parse_sprite('Layer 9.png') ,bulbaBack.parse_sprite('Layer 10.png')
+                   ,bulbaBack.parse_sprite('Layer 11.png') ,bulbaBack.parse_sprite('Layer 12.png'),bulbaBack.parse_sprite('Layer 13.png')]
 
 
 
 #index for animation array
 index = 0
 skip = .5
+
+index1 = 0
+skip1 = .5
 
 
 
@@ -71,6 +80,8 @@ class Game():
 
         global index
         global skip
+        global index1
+        global skip1
         # get wanted pokemon img
         # for now, just using 0,1,2 for pokemon values, should make enum
         choice = None
@@ -89,7 +100,7 @@ class Game():
 
         # draw opp
 
-        if index < 10:
+        if index < 11:
             skip = skip + .5
 
             if skip % 2 == 0:  #used to artificially slow down the animation
@@ -98,13 +109,26 @@ class Game():
             if(index > 10): #if removed, bulbasuar will stop moving, like he would in the games. May remove.
                 index = 0
 
-        WIN.blit(bulba_animation[index], (550, 150))
-        print(index)
+        WIN.blit(bulbaF_animation[index], (550, 150))
+
+
+
 
         # draw friendly, if picked
         if not choice == None:
-            friendly = flip_image(choice)
-            WIN.blit(friendly, (125, 250))
+            if choice == BULBASAUR:
+
+                if index1 < 11:
+                    skip1 = skip1 + .5
+
+                    if skip % 2 == 0:  # used to artificially slow down the animation
+                        index1 = index1 + 1
+
+                    if (index1 > 10):  # if removed, bulbasuar will stop moving, like he would in the games. May remove.
+                        index1 = 0
+
+                WIN.blit(bulbaB_animation[index1], (150, 300))
+
 
         # changed aren't visible until display is updated
         pygame.display.update()

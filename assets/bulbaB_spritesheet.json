@@ -1,0 +1,108 @@
+{"frames": {
+
+"Layer 2.png":
+{
+	"frame": {"x":0,"y":407,"w":115,"h":109},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":115,"h":109},
+	"sourceSize": {"w":115,"h":109}
+},
+"Layer 3.png":
+{
+	"frame": {"x":115,"y":407,"w":117,"h":109},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":117,"h":109},
+	"sourceSize": {"w":117,"h":109}
+},
+"Layer 4.png":
+{
+	"frame": {"x":117,"y":95,"w":116,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":116,"h":98},
+	"sourceSize": {"w":116,"h":98}
+},
+"Layer 5.png":
+{
+	"frame": {"x":0,"y":516,"w":115,"h":109},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":115,"h":109},
+	"sourceSize": {"w":115,"h":109}
+},
+"Layer 6.png":
+{
+	"frame": {"x":117,"y":0,"w":116,"h":95},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":116,"h":95},
+	"sourceSize": {"w":116,"h":95}
+},
+"Layer 7.png":
+{
+	"frame": {"x":115,"y":516,"w":116,"h":109},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":116,"h":109},
+	"sourceSize": {"w":116,"h":109}
+},
+"Layer 8.png":
+{
+	"frame": {"x":115,"y":193,"w":116,"h":105},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":116,"h":105},
+	"sourceSize": {"w":116,"h":105}
+},
+"Layer 9.png":
+{
+	"frame": {"x":0,"y":95,"w":117,"h":95},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":117,"h":95},
+	"sourceSize": {"w":117,"h":95}
+},
+"Layer 10.png":
+{
+	"frame": {"x":0,"y":298,"w":115,"h":109},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":115,"h":109},
+	"sourceSize": {"w":115,"h":109}
+},
+"Layer 11.png":
+{
+	"frame": {"x":0,"y":193,"w":115,"h":105},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":115,"h":105},
+	"sourceSize": {"w":115,"h":105}
+},
+"Layer 12.png":
+{
+	"frame": {"x":0,"y":0,"w":117,"h":95},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":117,"h":95},
+	"sourceSize": {"w":117,"h":95}
+},
+"Layer 13.png":
+{
+	"frame": {"x":115,"y":298,"w":116,"h":109},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":116,"h":109},
+	"sourceSize": {"w":116,"h":109}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "bulba_spritesheet.png",
+	"format": "RGBA8888",
+	"size": {"w":233,"h":625},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:9d7e2cb0bba23723b77656bd07d144cb:5f65d35da2110f8c3ec9ff90dd58b3c7:67d30aba71add85182e77ca8007339e5$"
+}
+}
