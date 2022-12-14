@@ -2,7 +2,7 @@
 
 "Layer 2.png":
 {
-	"frame": {"x":151,"y":1,"w":67,"h":65},
+	"frame": {"x":63,"y":65,"w":67,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":67,"h":65},
@@ -10,7 +10,7 @@
 },
 "Layer 3.png":
 {
-	"frame": {"x":70,"y":133,"w":63,"h":63},
+	"frame": {"x":0,"y":65,"w":63,"h":63},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":63,"h":63},
@@ -18,7 +18,7 @@
 },
 "Layer 4.png":
 {
-	"frame": {"x":196,"y":129,"w":57,"h":65},
+	"frame": {"x":0,"y":0,"w":57,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":57,"h":65},
@@ -26,7 +26,7 @@
 },
 "Layer 5.png":
 {
-	"frame": {"x":135,"y":133,"w":59,"h":63},
+	"frame": {"x":57,"y":0,"w":59,"h":63},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":59,"h":63},
@@ -34,15 +34,15 @@
 },
 "Layer 6.png":
 {
-	"frame": {"x":136,"y":68,"w":59,"h":65},
-	"rotated": true,
+	"frame": {"x":116,"y":0,"w":59,"h":65},
+	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":59,"h":65},
 	"sourceSize": {"w":59,"h":65}
 },
 "Layer 7.png":
 {
-	"frame": {"x":73,"y":66,"w":61,"h":65},
+	"frame": {"x":175,"y":0,"w":61,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":61,"h":65},
@@ -50,7 +50,7 @@
 },
 "Layer 8.png":
 {
-	"frame": {"x":1,"y":133,"w":67,"h":63},
+	"frame": {"x":130,"y":65,"w":67,"h":63},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":67,"h":63},
@@ -58,7 +58,7 @@
 },
 "Layer 9.png":
 {
-	"frame": {"x":75,"y":1,"w":74,"h":61},
+	"frame": {"x":142,"y":130,"w":74,"h":61},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":74,"h":61},
@@ -66,7 +66,7 @@
 },
 "Layer 10.png":
 {
-	"frame": {"x":1,"y":1,"w":72,"h":63},
+	"frame": {"x":70,"y":130,"w":72,"h":63},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":72,"h":63},
@@ -74,7 +74,7 @@
 },
 "Layer 11.png":
 {
-	"frame": {"x":1,"y":66,"w":70,"h":65},
+	"frame": {"x":0,"y":130,"w":70,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":70,"h":65},
@@ -85,8 +85,8 @@
 	"version": "1.0",
 	"image": "toto_spritesheet.png",
 	"format": "RGBA8888",
-	"size": {"w":254,"h":197},
+	"size": {"w":236,"h":195},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:75a5658912a230dec136bd7dfb7cde6a:7aeb13bfbfe83c33368aa13adf89f111:93654f11cb46c74376531ec87fa21f8d$"
+	"smartupdate": "$TexturePacker:SmartUpdate:23c383f6941d4a605a0979f96d0baff1:7aeb13bfbfe83c33368aa13adf89f111:93654f11cb46c74376531ec87fa21f8d$"
 }
 }

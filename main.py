@@ -42,6 +42,7 @@ if __name__ == '__main__':
             # this value will be the pokemon the user played
         # start game event with desired pokemon
 
+
         # todo:
         # run all calculations and stuff (animations?)
         # repeat until game finishes        

@@ -2,75 +2,83 @@
 
 "Layer 2.png":
 {
-	"frame": {"x":1,"y":89,"w":32,"h":41},
-	"rotated": true,
+	"frame": {"x":0,"y":0,"w":100,"h":128},
+	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":41},
-	"sourceSize": {"w":32,"h":41}
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":128},
+	"sourceSize": {"w":100,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
 },
 "Layer 3.png":
 {
-	"frame": {"x":38,"y":1,"w":33,"h":42},
+	"frame": {"x":100,"y":0,"w":104,"h":131},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":33,"h":42},
-	"sourceSize": {"w":33,"h":42}
+	"spriteSourceSize": {"x":0,"y":0,"w":104,"h":131},
+	"sourceSize": {"w":104,"h":131},
+	"pivot": {"x":0.5,"y":0.5}
 },
 "Layer 4.png":
 {
-	"frame": {"x":1,"y":1,"w":35,"h":42},
+	"frame": {"x":204,"y":0,"w":110,"h":131},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":35,"h":42},
-	"sourceSize": {"w":35,"h":42}
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":131},
+	"sourceSize": {"w":110,"h":131},
+	"pivot": {"x":0.5,"y":0.5}
 },
 "Layer 5.png":
 {
-	"frame": {"x":1,"y":45,"w":34,"h":42},
+	"frame": {"x":314,"y":0,"w":107,"h":131},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":34,"h":42},
-	"sourceSize": {"w":34,"h":42}
+	"spriteSourceSize": {"x":0,"y":0,"w":107,"h":131},
+	"sourceSize": {"w":107,"h":131},
+	"pivot": {"x":0.5,"y":0.5}
 },
 "Layer 6.png":
 {
-	"frame": {"x":37,"y":45,"w":33,"h":41},
+	"frame": {"x":421,"y":0,"w":104,"h":128},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":33,"h":41},
-	"sourceSize": {"w":33,"h":41}
+	"spriteSourceSize": {"x":0,"y":0,"w":104,"h":128},
+	"sourceSize": {"w":104,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
 },
 "Layer 7.png":
 {
-	"frame": {"x":44,"y":88,"w":33,"h":41},
-	"rotated": true,
+	"frame": {"x":525,"y":0,"w":104,"h":128},
+	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":33,"h":41},
-	"sourceSize": {"w":33,"h":41}
+	"spriteSourceSize": {"x":0,"y":0,"w":104,"h":128},
+	"sourceSize": {"w":104,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
 },
 "Layer 8.png":
 {
-	"frame": {"x":73,"y":1,"w":31,"h":42},
+	"frame": {"x":629,"y":0,"w":98,"h":131},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":31,"h":42},
-	"sourceSize": {"w":31,"h":42}
+	"spriteSourceSize": {"x":0,"y":0,"w":98,"h":131},
+	"sourceSize": {"w":98,"h":131},
+	"pivot": {"x":0.5,"y":0.5}
 },
 "Layer 9.png":
 {
-	"frame": {"x":72,"y":45,"w":31,"h":41},
+	"frame": {"x":727,"y":0,"w":97,"h":128},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":31,"h":41},
-	"sourceSize": {"w":31,"h":41}
+	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":128},
+	"sourceSize": {"w":97,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "toto_spritesheet.png",
+	"image": "tepigB_spritesheet.png",
 	"format": "RGBA8888",
-	"size": {"w":105,"h":122},
+	"size": {"w":824,"h":131},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:6e33de09e3bf492760900fc3d599e731:9a5bc59e2535ea98f67d1fadc974f148:93654f11cb46c74376531ec87fa21f8d$"
+	"smartupdate": "$TexturePacker:SmartUpdate:0228cd72b0251a2c22c16aad0aef437e:6d4491d28d06d930942a444a60d50da4:531fbdc9de74115e79e9bf7b00e0df51$"
 }
 }

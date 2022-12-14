@@ -5,6 +5,7 @@ import os
 import time
 import threading
 
+
 class ImageClassifier:
 
     def __init__(self, onFeatureFound):
@@ -12,8 +13,7 @@ class ImageClassifier:
         self.classNames, self.cards = self.readData()
         self.descriptList = self.findDescriptor()
         self.featureFound = onFeatureFound  # callback function to call when card detected (requires 1 arg for pokemon label)
-        self.detecting = True   # if it is attempting to detect cards
-
+        self.detecting = True  # if it is attempting to detect cards
 
     def readData(self):
         path = 'data/cards'
@@ -22,7 +22,7 @@ class ImageClassifier:
         list = os.listdir(path)
 
         for cl in list:
-            imCur = cv2.imread(f'{path}/{cl}',0)
+            imCur = cv2.imread(f'{path}/{cl}', 0)
             cards.append(imCur)
             classNames.append(os.path.splitext(cl)[0])
 
@@ -35,8 +35,7 @@ class ImageClassifier:
             descriptList.append(descriptor)
         return descriptList
 
-
-    def findID(self, img, thresh = 15):
+    def findID(self, img, thresh=15):
         points2, descriptor2 = self.sift.detectAndCompute(img, None)
         bf = cv2.BFMatcher()
         matchList = []
@@ -61,13 +60,12 @@ class ImageClassifier:
         cap = cv2.VideoCapture(0)
 
         while True:
-            success, img =cap.read();
-
+            success, img = cap.read();
             id = self.findID(img)
             if id != -1:
-                color = (0,255,0) if self.detecting else (0,0,255)  # red if not detecting, green if it is
-                cv2.putText(img, self.classNames[id], (50, 50), cv2.FONT_HERSHEY_COMPLEX, 1 , color, thickness = 2)
-            
+                color = (0, 255, 0) if self.detecting else (0, 0, 255)  # red if not detecting, green if it is
+                cv2.putText(img, self.classNames[id], (50, 50), cv2.FONT_HERSHEY_COMPLEX, 1, color, thickness=2)
+
                 if self.detecting:
                     self.featureFound(self.classNames[id])
                     # only need to detect and perform callback once, then wait for outside source to reset the flag
@@ -81,9 +79,5 @@ class ImageClassifier:
 
 
 if __name__ == '__main__':
-
     def whenFound(x):
         print(x, "detected in the image")
-
-    ic = ImageClassifier(whenFound)
-    ic.run()

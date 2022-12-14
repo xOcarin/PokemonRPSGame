@@ -51,7 +51,23 @@ totoF_animation = [totoFront.parse_sprite('Layer 2.png'), totoFront.parse_sprite
                    ,totoFront.parse_sprite('Layer 8.png') ,totoFront.parse_sprite('Layer 9.png') ,totoFront.parse_sprite('Layer 10.png')
                    ,totoFront.parse_sprite('Layer 11.png')]
 
+totoBack = Spritesheet('assets/totoB_spritesheet.png')
+totoB_animation = [totoBack.parse_sprite('Layer 2.png'), totoBack.parse_sprite('Layer 3.png'),totoBack.parse_sprite('Layer 4.png'),
+                   totoBack.parse_sprite('Layer 5.png'),totoBack.parse_sprite('Layer 6.png'),totoBack.parse_sprite('Layer 7.png')
+                   ,totoBack.parse_sprite('Layer 8.png') ,totoBack.parse_sprite('Layer 9.png') ,totoBack.parse_sprite('Layer 10.png')
+                   ,totoBack.parse_sprite('Layer 11.png')]
 
+
+#obtaining sprites for tepig
+tepigFront = Spritesheet('assets/tepig_spritesheet.png')
+tepigF_animation = [tepigFront.parse_sprite('Layer 2.png'), tepigFront.parse_sprite('Layer 3.png'),tepigFront.parse_sprite('Layer 4.png'),
+                   tepigFront.parse_sprite('Layer 5.png'),tepigFront.parse_sprite('Layer 6.png'),tepigFront.parse_sprite('Layer 7.png')
+                   ,tepigFront.parse_sprite('Layer 8.png')]
+
+tepigBack = Spritesheet('assets/tepigB_spritesheet.png')
+tepigB_animation = [tepigBack.parse_sprite('Layer 2.png'), tepigBack.parse_sprite('Layer 3.png'),tepigBack.parse_sprite('Layer 4.png'),
+                   tepigBack.parse_sprite('Layer 5.png'),tepigBack.parse_sprite('Layer 6.png'),tepigBack.parse_sprite('Layer 7.png')
+                   ,tepigBack.parse_sprite('Layer 8.png')]
 
 
 
@@ -90,7 +106,6 @@ class Game():
 
     # function to render each frame
     def _draw_window(self, pokemon):
-
         # get wanted pokemon img
         # for now, just using 0,1,2 for pokemon values, should make enum
         choice = None
@@ -132,30 +147,29 @@ class Game():
             # TODO: change to totodileBack animation
             elif choice == TOTODILE:
 
-                if self.index1 < 11:
+                if self.index1 < 10:
                     self.skip1 = self.skip1 + .5
 
                     if self.skip1 % 2 == 0:  # used to artificially slow down the animation
                         self.index1 = self.index1 + 1
 
-                    if (self.index1 > 10):  # if removed, bulbasuar will stop moving, like he would in the games. May remove.
+                    if (self.index1 > 9):  # if removed, bulbasuar will stop moving, like he would in the games. May remove.
                         self.index1 = 0
 
-                WIN.blit(bulbaB_animation[self.index1], (150, 300))
+                WIN.blit(totoB_animation[self.index1], (150, 300))
 
             # TODO: change to tepigBack animation
             elif choice == TEPIG:
 
-                if self.index1 < 11:
+                if self.index1 < 7:
                     self.skip1 = self.skip1 + .5
 
                     if self.skip1 % 2 == 0:  # used to artificially slow down the animation
                         self.index1 = self.index1 + 1
 
-                    if (self.index1 > 10):  # if removed, bulbasuar will stop moving, like he would in the games. May remove.
+                    if (self.index1 > 6):  # if removed, bulbasuar will stop moving, like he would in the games. May remove.
                         self.index1 = 0
-
-                WIN.blit(bulbaB_animation[self.index1], (150, 300))
+                WIN.blit(tepigB_animation[self.index1], (150, 300))
 
 
         # draw opponent (IF player picked something, and after some delay)
@@ -216,7 +230,7 @@ class Game():
             WIN.blit(bulbaF_animation[self.index], (550, 150))
 
         elif choice == TOTODILE:
-            if self.index < 10:
+            if self.index < 11:
                 self.skip = self.skip + .5
 
                 if self.skip % 2 == 0:  # used to artificially slow down the animation
@@ -230,23 +244,23 @@ class Game():
 
         # TODO: change to tepigFront animation
         elif choice == TEPIG:
-            if self.index < 10:
+            if self.index < 7:
                 self.skip = self.skip + .5
 
                 if self.skip % 2 == 0:  # used to artificially slow down the animation
                     self.index = self.index + 1
 
-                if (self.index > 9):  # if removed, bulbasuar will stop moving, like he would in the games. May remove.
+                if (self.index > 6):  # if removed, bulbasuar will stop moving, like he would in the games. May remove.
                     self.index = 0
 
-            WIN.blit(totoF_animation[self.index], (550, 150))
+            WIN.blit(tepigF_animation[self.index], (550, 150))
 
     def _draw_results(self):
         if self.pokemon_chosen_time == 0 or self.enemy_pokemon == None:
             return
 
         # don't do anything for 3 sec (2 sec should have already been waited) after opp chooses their pokemon
-        req_time = FPS * 5
+        req_time = FPS * 2
         if self.global_timer - self.pokemon_chosen_time < req_time:
             return
 
@@ -264,9 +278,9 @@ class Game():
 
         WIN.blit(text, (370,30))
 
-        # show the result for 7 seconds, then reset a bunch of stuff (so game repeats)
+        # show the result for 2 seconds, then reset a bunch of stuff (so game repeats)
         # set both pokemon to None, reset time, etc...
-        req_time_2 = req_time + (FPS * 7)
+        req_time_2 = req_time + (FPS * 2)
         if self.global_timer - self.pokemon_chosen_time < req_time_2:
             return
 
