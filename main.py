@@ -16,6 +16,8 @@ if __name__ == '__main__':
         def run(self):
             self.ic.run()
 
+
+
     def whenPokemonDetected(x):
         val = -1
         match(x):
@@ -25,7 +27,7 @@ if __name__ == '__main__':
                 val = 1
             case 'tododile_card':
                 val = 2
-        game.desired_pokemon = val
+        game.choose_pokemon(val)
 
     ic = ic_thread(whenPokemonDetected);
     ic.start()

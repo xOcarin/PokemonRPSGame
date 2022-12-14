@@ -7,15 +7,12 @@ import threading
 
 class ImageClassifier:
 
-    def __init__(self, onPokemonFound):
+    def __init__(self, onFeatureFound):
         self.sift = cv2.SIFT_create()
         self.classNames, self.cards = self.readData()
         self.descriptList = self.findDescriptor()
-        self.pokemonFound = onPokemonFound  # callback function to call when card detected (requires 1 arg for pokemon label)
+        self.featureFound = onFeatureFound  # callback function to call when card detected (requires 1 arg for pokemon label)
         self.detecting = True   # if it is attempting to detect cards
-
-    def pause(self):
-        self.detecting = False
 
 
     def readData(self):
@@ -72,9 +69,9 @@ class ImageClassifier:
                 cv2.putText(img, self.classNames[id], (50, 50), cv2.FONT_HERSHEY_COMPLEX, 1 , color, thickness = 2)
             
                 if self.detecting:
-                    self.pokemonFound(self.classNames[id])
+                    self.featureFound(self.classNames[id])
                     # only need to detect and perform callback once, then wait for outside source to reset the flag
-                    self.detecting = False
+                    # self.detecting = False    # removed for now, cant think of a good way to re-enable later
 
             cv2.imshow('Capture', img)
             # exit program when pressing 'q'
