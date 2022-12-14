@@ -163,13 +163,15 @@ class Game():
 
                 if self.index1 < 7:
                     self.skip1 = self.skip1 + .5
+                    if self.index > 7:
+                        self.index = 0
 
                     if self.skip1 % 2 == 0:  # used to artificially slow down the animation
                         self.index1 = self.index1 + 1
 
                     if (self.index1 > 6):  # if removed, bulbasuar will stop moving, like he would in the games. May remove.
                         self.index1 = 0
-                WIN.blit(tepigB_animation[self.index1], (150, 300))
+                    WIN.blit(tepigB_animation[self.index1], (150, 300))
 
 
         # draw opponent (IF player picked something, and after some delay)
@@ -246,14 +248,15 @@ class Game():
         elif choice == TEPIG:
             if self.index < 7:
                 self.skip = self.skip + .5
-
+                if self.index > 7:
+                    self.index = 0
                 if self.skip % 2 == 0:  # used to artificially slow down the animation
                     self.index = self.index + 1
 
                 if (self.index > 6):  # if removed, bulbasuar will stop moving, like he would in the games. May remove.
                     self.index = 0
 
-            WIN.blit(tepigF_animation[self.index], (550, 150))
+                WIN.blit(tepigF_animation[self.index], (550, 150))
 
     def _draw_results(self):
         if self.pokemon_chosen_time == 0 or self.enemy_pokemon == None:
