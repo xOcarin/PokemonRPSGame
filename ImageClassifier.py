@@ -16,7 +16,7 @@ class ImageClassifier:
         self.detecting = True  # if it is attempting to detect cards
 
     def readData(self):
-        path = 'data/cards'
+        path = os.path.join(os.path.dirname(__file__), "data", "cards")
         cards = []
         classNames = []
         list = os.listdir(path)

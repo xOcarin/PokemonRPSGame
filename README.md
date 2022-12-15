@@ -1,9 +1,10 @@
-﻿![](Aspose.Words.e2b14219-a1a4-4ba6-9d45-247e0f55e229.001.png)
+﻿# PokéRPS
 
-Hunter Kalinoski & Cameron Ware
+### Hunter Kalinoski & Cameron Ware
 
+<br>
 
-Hello Dr. Ohl. This is our CV project, PokeRPS. 
+Hello Dr. Ohl. This is our CV project, PokéRPS (pokémon rock paper scissors).
 
 The game requires a webcam, images of three Pokemon cards.
 
@@ -11,7 +12,7 @@ The three cards should be included in the canvas sumbmission as well as emailed 
 
 The game uses a live camera feed to detect if there is a card using feature points. All of the CV aspects and how we created the live feature point detector is all in the ImageClassifier.py file.
 
-To launch the game, run main.py. The game will automatically use your default webcam. Please ensure that no other program is using the webcam, as it will not work otherwise. 
+To launch the game, run main.py. The game will automatically use your default webcam. Please ensure that no other program is using the webcam, as it will not work otherwise.
 
 Requirements file shows all packages needed for the project to run.
 

@@ -15,7 +15,7 @@ from utils import checkCollisions
 WIDTH, HEIGHT = 800, 400
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("pokéRPS :)")
-pygame_icon = pygame.image.load(os.path.join("assets", "icon.png"))
+pygame_icon = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "icon.png"))
 pygame.display.set_icon(pygame_icon)
 pygame.init()
 
@@ -34,70 +34,69 @@ SKY_BLUE = (0,200,255)
 FPS = 30
 
 # load in sound effects
-
-tepigCry = pygame.mixer.Sound(os.path.join("assets", "sounds", "tepig.mp3"))
-bulbaCry = pygame.mixer.Sound(os.path.join("assets", "sounds","bulbasaur.mp3"))
-totoCry = pygame.mixer.Sound(os.path.join("assets", "sounds","totodile.mp3"))
-select = pygame.mixer.Sound(os.path.join("assets", "sounds","select.mp3"))
-trade = pygame.mixer.Sound(os.path.join("assets", "sounds","trade.mp3"))
-hit = pygame.mixer.Sound(os.path.join("assets", "sounds","hit.mp3"))
-enhit = pygame.mixer.Sound(os.path.join("assets", "sounds","enhit.mp3"))
+tepigCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds", "tepig.mp3"))
+bulbaCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","bulbasaur.mp3"))
+totoCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","totodile.mp3"))
+select = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","select.mp3"))
+trade = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","trade.mp3"))
+hit = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","hit.mp3"))
+enhit = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","enhit.mp3"))
 # load in music
 
-battleMusic = pygame.mixer.Sound(os.path.join("assets", "sounds","battle.mp3"))
-menuMusic = pygame.mixer.Sound(os.path.join("assets", "sounds","menu.mp3"))
-victoryMusic = pygame.mixer.Sound(os.path.join("assets", "sounds","victory.mp3"))
-drawMusic = pygame.mixer.Sound(os.path.join("assets", "sounds","draw.mp3"))
-loseMusic = pygame.mixer.Sound(os.path.join("assets", "sounds","lose.mp3"))
+battleMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","battle.mp3"))
+menuMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","menu.mp3"))
+victoryMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","victory.mp3"))
+drawMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","draw.mp3"))
+loseMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","lose.mp3"))
 
 
 
 
 
 # load in assets
-BACKGROUND = pygame.image.load(os.path.join("assets", "background.png"))
-TITLESCREEN = pygame.image.load(os.path.join("assets", "titlescreen.png"))
-LOSESCREEN = pygame.image.load(os.path.join("assets", "losescreen.png"))
-WINSCREEN = pygame.image.load(os.path.join("assets", "winscreen.png"))
-DRAWSCREEN = pygame.image.load(os.path.join("assets", "drawscreen.png"))
-TUT1 = pygame.image.load(os.path.join("assets", "tut1.png"))
-TUT2 = pygame.image.load(os.path.join("assets", "tut2.png"))
-TUT3 = pygame.image.load(os.path.join("assets", "tut3.png"))
-OVERLAY = pygame.image.load(os.path.join("assets", "overlay.png"))
-OVERLAY = pygame.image.load(os.path.join("assets", "overlay.png"))
-H1 = pygame.image.load(os.path.join("assets", "r1.png"))
-H2 = pygame.image.load(os.path.join("assets", "r2.png"))
-H3 = pygame.image.load(os.path.join("assets", "r3.png"))
-H4 = pygame.image.load(os.path.join("assets", "r4.png"))
-H5 = pygame.image.load(os.path.join("assets", "r5.png"))
-H6 = pygame.image.load(os.path.join("assets", "r6.png"))
+BACKGROUND = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "background.png"))
+TITLESCREEN = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "titlescreen.png"))
+LOSESCREEN = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "losescreen.png"))
+WINSCREEN = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "winscreen.png"))
+DRAWSCREEN = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "drawscreen.png"))
+TUT1 = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "tut1.png"))
+TUT2 = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "tut2.png"))
+TUT3 = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "tut3.png"))
+OVERLAY = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "overlay.png"))
+OVERLAY = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "overlay.png"))
+H1 = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "r1.png"))
+H2 = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "r2.png"))
+H3 = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "r3.png"))
+H4 = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "r4.png"))
+H5 = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "r5.png"))
+H6 = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "r6.png"))
 
 
-_bulbasaur = pygame.image.load(os.path.join("data", "cards", "bulbasaur_card.png"))
-_tepig = pygame.image.load(os.path.join("data", "cards", "tepig_card.png"))
-_tododile = pygame.image.load(os.path.join("data", "cards", "tododile_card.png"))
+_bulbasaur = pygame.image.load(os.path.join(os.path.dirname(__file__), "data", "cards", "bulbasaur_card.png"))
+_tepig = pygame.image.load(os.path.join(os.path.dirname(__file__), "data", "cards", "tepig_card.png"))
+_tododile = pygame.image.load(os.path.join(os.path.dirname(__file__), "data", "cards", "tododile_card.png"))
 
 #obtaining sprites for bulbasaur
-bulbaFront = Spritesheet('assets/bulba_spritesheet.png')
+bulbaFront = Spritesheet(os.path.join(os.path.dirname(__file__), "assets", "bulba_spritesheet.png"))
 bulbaF_animation = [bulbaFront.parse_sprite('Layer 2.png'), bulbaFront.parse_sprite('Layer 3.png'),bulbaFront.parse_sprite('Layer 4.png'),
                    bulbaFront.parse_sprite('Layer 5.png'),bulbaFront.parse_sprite('Layer 6.png'),bulbaFront.parse_sprite('Layer 7.png')
                    ,bulbaFront.parse_sprite('Layer 8.png') ,bulbaFront.parse_sprite('Layer 9.png') ,bulbaFront.parse_sprite('Layer 10.png')
                    ,bulbaFront.parse_sprite('Layer 11.png') ,bulbaFront.parse_sprite('Layer 12.png')]
 
-bulbaBack = Spritesheet('assets/bulbaB_spritesheet.png')
+bulbaBack = Spritesheet(os.path.join(os.path.dirname(__file__), "assets", "bulbaB_spritesheet.png"))
 bulbaB_animation = [bulbaBack.parse_sprite('Layer 2.png'), bulbaBack.parse_sprite('Layer 3.png'),bulbaBack.parse_sprite('Layer 4.png'),
                    bulbaBack.parse_sprite('Layer 5.png'),bulbaBack.parse_sprite('Layer 6.png'),bulbaBack.parse_sprite('Layer 7.png')
                    ,bulbaBack.parse_sprite('Layer 8.png') ,bulbaBack.parse_sprite('Layer 9.png') ,bulbaBack.parse_sprite('Layer 10.png')
                    ,bulbaBack.parse_sprite('Layer 11.png') ,bulbaBack.parse_sprite('Layer 12.png'),bulbaBack.parse_sprite('Layer 13.png')]
 
 #obtaining sprites for totodile
-totoFront = Spritesheet('assets/toto_spritesheet.png')
+totoFront = Spritesheet(os.path.join(os.path.dirname(__file__), "assets", "toto_spritesheet.png"))
 totoF_animation = [totoFront.parse_sprite('Layer 2.png'), totoFront.parse_sprite('Layer 3.png'),totoFront.parse_sprite('Layer 4.png'),
                    totoFront.parse_sprite('Layer 5.png'),totoFront.parse_sprite('Layer 6.png'),totoFront.parse_sprite('Layer 7.png')
                    ,totoFront.parse_sprite('Layer 8.png') ,totoFront.parse_sprite('Layer 9.png') ,totoFront.parse_sprite('Layer 10.png')
                    ,totoFront.parse_sprite('Layer 11.png')]
 
-totoBack = Spritesheet('assets/totoB_spritesheet.png')
+totoBack = Spritesheet(os.path.join(os.path.dirname(__file__), "assets", "totoB_spritesheet.png"))
 totoB_animation = [totoBack.parse_sprite('Layer 2.png'), totoBack.parse_sprite('Layer 3.png'),totoBack.parse_sprite('Layer 4.png'),
                    totoBack.parse_sprite('Layer 5.png'),totoBack.parse_sprite('Layer 6.png'),totoBack.parse_sprite('Layer 7.png')
                    ,totoBack.parse_sprite('Layer 8.png') ,totoBack.parse_sprite('Layer 9.png') ,totoBack.parse_sprite('Layer 10.png')
@@ -105,21 +104,21 @@ totoB_animation = [totoBack.parse_sprite('Layer 2.png'), totoBack.parse_sprite('
 
 
 #obtaining sprites for tepig
-tepigFront = Spritesheet('assets/tepig_spritesheet.png')
+tepigFront = Spritesheet(os.path.join(os.path.dirname(__file__), "assets", "tepig_spritesheet.png"))
 tepigF_animation = [tepigFront.parse_sprite('Layer 2.png'), tepigFront.parse_sprite('Layer 3.png'),tepigFront.parse_sprite('Layer 4.png'),
                    tepigFront.parse_sprite('Layer 5.png'),tepigFront.parse_sprite('Layer 6.png'),tepigFront.parse_sprite('Layer 7.png')
                    ,tepigFront.parse_sprite('Layer 8.png')]
 
-tepigBack = Spritesheet('assets/tepigB_spritesheet.png')
+tepigBack = Spritesheet(os.path.join(os.path.dirname(__file__), "assets", "tepigB_spritesheet.png"))
 tepigB_animation = [tepigBack.parse_sprite('Layer 2.png'), tepigBack.parse_sprite('Layer 3.png'),tepigBack.parse_sprite('Layer 4.png'),
                    tepigBack.parse_sprite('Layer 5.png'),tepigBack.parse_sprite('Layer 6.png'),tepigBack.parse_sprite('Layer 7.png')
                    ,tepigBack.parse_sprite('Layer 8.png')]
 
 
 
-font = pygame.font.Font(os.path.join( "assets", "pokemon_fire_red.ttf"), 64)
-font_large = pygame.font.Font(os.path.join( "assets", "pokemon_fire_red.ttf"), 128)
-font_small = pygame.font.Font(os.path.join( "assets", "pokemon_fire_red.ttf"), 32)
+font = pygame.font.Font(os.path.join(os.path.dirname(__file__), "assets", "pokemon_fire_red.ttf"), 64)
+font_large = pygame.font.Font(os.path.join(os.path.dirname(__file__), "assets", "pokemon_fire_red.ttf"), 128)
+font_small = pygame.font.Font(os.path.join(os.path.dirname(__file__), "assets", "pokemon_fire_red.ttf"), 32)
 
 # resizing pokemon
 BULBASAUR = pygame.transform.scale(_bulbasaur, (120, 178))
@@ -159,6 +158,8 @@ class Game():
 
         # result of the battle, {None = ongoing fight, 'LOSE', 'TIE', 'WIN'}
         self.gameResult = None
+
+        self.inGame = False
 
 
 
@@ -331,13 +332,13 @@ class Game():
                 self.enemy_pokemon = val
                 if val == 0:
                     pygame.mixer.Sound.play(bulbaCry)
-                    print("enemy chose: bulbasaur")
+                    # print("enemy chose: bulbasaur")
                 elif val == 1:
                     pygame.mixer.Sound.play(tepigCry)
-                    print("enemy chose: tepig")
+                    # print("enemy chose: tepig")
                 else:
                     pygame.mixer.Sound.play(totoCry)
-                    print("enemy chose: totodile")
+                    # print("enemy chose: totodile")
 
             # if computer tries to use a dead pokemon, simply try again
             if self.enemy_hps[self.enemy_pokemon] <= 0 and not self.results_done:
@@ -497,6 +498,9 @@ class Game():
 
     def choose_pokemon(self, pokemon):
 
+        if not self.inGame:
+            return
+
         # don't do anything while pokemon exists,
         # do not want to change these values in the middle of a turn
         # desired_pokemon is set back to None after turn is over
@@ -510,13 +514,13 @@ class Game():
         self.desired_pokemon = pokemon
         self.pokemon_chosen_time = self.global_timer
         if pokemon == 0:
-            print("you chose: bulbasaur")
+            # print("you chose: bulbasaur")
             pygame.mixer.Sound.play(bulbaCry)
         elif pokemon == 1:
-            print("you chose: tepig")
+            # print("you chose: tepig")
             pygame.mixer.Sound.play(tepigCry)
         else:
-            print("you chose: totodile")
+            # print("you chose: totodile")
             pygame.mixer.Sound.play(totoCry)
 
 
@@ -626,7 +630,7 @@ class Game():
                 WIN.fill(WHITE)
                 WIN.blit(TITLESCREEN, (0,y))
                 y = y - .75
-                print(y)
+                # print(y)
                 pygame.display.update()
             WIN.blit(TITLESCREEN, (0, -360))
             pygame.display.update()
@@ -637,6 +641,7 @@ class Game():
         pygame.mixer.Sound.play(battleMusic)
         # condition to allow exiting the game
         run = True
+        self.inGame = True
         while(run):
             # ensures the game runs at the desired frames per second
             clock.tick(FPS)
