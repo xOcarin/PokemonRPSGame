@@ -33,16 +33,3 @@ if __name__ == '__main__':
     ic.start()
 
     game.run()
-
-
-
-
-        # boot up the game and image classifier
-        # wait until image classifier returns a value
-            # this value will be the pokemon the user played
-        # start game event with desired pokemon
-
-
-        # todo:
-        # run all calculations and stuff (animations?)
-        # repeat until game finishes        

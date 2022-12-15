@@ -72,6 +72,8 @@ tepigB_animation = [tepigBack.parse_sprite('Layer 2.png'), tepigBack.parse_sprit
 
 
 font = pygame.font.Font(os.path.join( "assets", "pokemon_fire_red.ttf"), 64)
+font_large = pygame.font.Font(os.path.join( "assets", "pokemon_fire_red.ttf"), 128)
+font_small = pygame.font.Font(os.path.join( "assets", "pokemon_fire_red.ttf"), 32)
 
 # resizing pokemon
 BULBASAUR = pygame.transform.scale(_bulbasaur, (120, 178))
@@ -97,7 +99,18 @@ class Game():
         # holds time that pokemon was chosen, used for waiting x time then doing something
         self.pokemon_chosen_time = 0
 
-        self.score = 0
+        # holds hp of your pokemon
+        # like usual, 0 is bulbasaur, 1 is tepig, 2 is totodile
+        self.hps = [10] * 3
+        self.enemy_hps = [10] * 3
+
+
+        # easy but unclean way to keep track of if results have been calculated (hp subtracted)
+        # otherwise, would repeat subtraction every frame for 2sec in _draw_results()
+        self.results_done = False
+
+        # result of the battle, {None = ongoing fight, 'LOSE', 'TIE', 'WIN'}
+        self.gameResult = None
 
 
 
@@ -106,6 +119,7 @@ class Game():
 
     # function to render each frame
     def _draw_window(self, pokemon):
+
         # get wanted pokemon img
         # for now, just using 0,1,2 for pokemon values, should make enum
         choice = None
@@ -122,10 +136,13 @@ class Game():
         # blit draws over the screen (img, coords)
         WIN.blit(BACKGROUND, (0,0))
 
+        # check if game is over, if so, draw results and ignore the rest of this function
+        if not self.gameResult == None:
+            result_text = font_large.render(self.gameResult, True, BLACK)
+            WIN.blit(result_text, (350, 100))
 
-        # draw your score in the corner
-        score = font.render(f"score: {self.score}", True, BLACK)
-        WIN.blit(score,(20,0))
+            pygame.display.update()
+            return
 
 
         # draw friendly, if picked
@@ -173,6 +190,33 @@ class Game():
                         self.index1 = 0
                     WIN.blit(tepigB_animation[self.index1], (150, 300))
 
+            # draw the player pokemon's hp
+            hp_text = font.render(f"{self.hps[self.desired_pokemon]}/10", True, BLACK)
+            WIN.blit(hp_text, (150, 250))
+
+
+        # draw hp of all your pokemon
+        hp_label = font_small.render(f"Your pokemon:", True, BLACK)
+        WIN.blit(hp_label, (20,0))
+        bulbasaur_hp = font_small.render(f"bulbasaur: {self.hps[0]}/10", True, BLACK)
+        WIN.blit(bulbasaur_hp, (20,35))
+        tepig_hp = font_small.render(f"tepig: {self.hps[1]}/10", True, BLACK)
+        WIN.blit(tepig_hp, (20,60))
+        totodile_hp = font_small.render(f"totodile: {self.hps[2]}/10", True, BLACK)
+        WIN.blit(totodile_hp, (20,85))
+
+        # draw hp of enemy pokemon
+        enemy_hp_label = font_small.render(f"Enemy pokemon:", True, BLACK)
+        WIN.blit(enemy_hp_label, (640, 0))
+        enemy_bulbasaur_hp = font_small.render(f"bulbasaur:{self.enemy_hps[0]}/10", True, BLACK)
+        WIN.blit(enemy_bulbasaur_hp, (640,35))
+        enemy_tepig_hp = font_small.render(f"tepig: {self.enemy_hps[1]}/10", True, BLACK)
+        WIN.blit(enemy_tepig_hp, (640,60))
+        enemy_totodile_hp = font_small.render(f"totodile: {self.enemy_hps[2]}/10", True, BLACK)
+        WIN.blit(enemy_totodile_hp, (640,85))
+
+        
+
 
         # draw opponent (IF player picked something, and after some delay)
         self._draw_opp()
@@ -194,16 +238,25 @@ class Game():
             return
 
 
-        if self.enemy_pokemon == None:
-            # choose enemy pokemon if didnt do that already
-            val = random.randint(0,2)  # 0-2 int again, same as player's pokemon
-            self.enemy_pokemon = val
-            if val == 0:
-                print("enemy chose: bulbasaur")
-            elif val == 1:
-                print("enemy chose: tepig")
-            else:
-                print("enemy chose: totodile")
+        while True:
+            if self.enemy_pokemon == None:
+                # choose enemy pokemon if didnt do that already
+                val = random.randint(0,2)  # 0-2 int again, same as player's pokemon
+                self.enemy_pokemon = val
+                if val == 0:
+                    print("enemy chose: bulbasaur")
+                elif val == 1:
+                    print("enemy chose: tepig")
+                else:
+                    print("enemy chose: totodile")
+
+            # if computer tries to use a dead pokemon, simply try again
+            if self.enemy_hps[self.enemy_pokemon] <= 0 and not self.results_done:
+                self.enemy_pokemon = None
+                continue
+
+            # otherwise we are good
+            break
 
         # draw opp
 
@@ -244,7 +297,6 @@ class Game():
             WIN.blit(totoF_animation[self.index], (550, 150))
 
 
-        # TODO: change to tepigFront animation
         elif choice == TEPIG:
             if self.index < 7:
                 self.skip = self.skip + .5
@@ -258,28 +310,53 @@ class Game():
 
                 WIN.blit(tepigF_animation[self.index], (550, 150))
 
+
+        # after pokemon is drawn, also draw its hp
+        hp_text = font.render(f"{self.enemy_hps[self.enemy_pokemon]}/10", True, BLACK)
+        WIN.blit(hp_text,(550, 100))
+
     def _draw_results(self):
         if self.pokemon_chosen_time == 0 or self.enemy_pokemon == None:
             return
 
         # don't do anything for 3 sec (2 sec should have already been waited) after opp chooses their pokemon
-        req_time = FPS * 2
+        req_time = FPS * 3
         if self.global_timer - self.pokemon_chosen_time < req_time:
             return
 
         # display victory,tie,loss depending on player and enemy chosen pokemon
         result = None
         if self.desired_pokemon == self.enemy_pokemon:
-            text = font.render("DRAW", False, BLACK)
+            text = font.render("Fair Trade!", True, BLACK)
+            WIN.blit(text, (360,30))
             result = 'tie'
         elif (self.desired_pokemon +1)%3 == self.enemy_pokemon:
-            text = font.render("LOSE", False, BLACK)
+            text = font.render("Enemy Resisted!", True, BLACK)
+            WIN.blit(text, (300,30))
             result = 'lose'
         else:
-            text = font.render("WIN", False, BLACK)
+            text = font.render("Super Effective!", True, BLACK)
+            WIN.blit(text, (300,30))
             result = 'win'
 
-        WIN.blit(text, (370,30))
+        
+        # adjust health from result of the battle
+        if result == 'win' and not self.results_done:
+            self.hps[self.desired_pokemon] -= 2
+            self.enemy_hps[self.enemy_pokemon] -= 6
+        elif result == 'lose' and not self.results_done:
+            self.hps[self.desired_pokemon] -= 6
+            self.enemy_hps[self.enemy_pokemon] -= 2
+        elif result == 'tie' and not self.results_done:
+            self.hps[self.desired_pokemon] -= 4
+            self.enemy_hps[self.enemy_pokemon] -= 4
+        self.results_done = True
+
+        # normalize hp (don't let it go negative)
+        if self.hps[self.desired_pokemon] < 0:
+            self.hps[self.desired_pokemon] = 0
+        if self.enemy_hps[self.enemy_pokemon] < 0:
+            self.enemy_hps[self.enemy_pokemon] = 0
 
         # show the result for 2 seconds, then reset a bunch of stuff (so game repeats)
         # set both pokemon to None, reset time, etc...
@@ -287,15 +364,33 @@ class Game():
         if self.global_timer - self.pokemon_chosen_time < req_time_2:
             return
 
-        if result == 'win':
-            self.score += 1
-        elif result == 'lose':
-            self.score -= 1
-
         # resetting stuff
         self.desired_pokemon = None
         self.enemy_pokemon = None
         self.pokemon_chosen_time = 0
+        self.results_done = False
+
+        # check if one team's hp is all zeros (game over)
+        playerDead = True
+        enemyDead = True
+        for i in range(3):
+            # if one pokemon has more than 0 hp, that person is not dead
+            if not self.hps[i] == 0:
+                playerDead = False
+            if not self.enemy_hps[i] == 0:
+                enemyDead = False
+
+        if playerDead and enemyDead:
+            self.gameResult = 'TIE'
+            print('game over, it was a tie')
+        elif playerDead:
+            self.gameResult = 'LOSE'
+            print('game over, you lose.')
+
+        elif enemyDead:
+            self.gameResult = 'WIN'
+            print('You win!! Congratulations!!')
+
 
 
     def choose_pokemon(self, pokemon):
@@ -304,6 +399,10 @@ class Game():
         # do not want to change these values in the middle of a turn
         # desired_pokemon is set back to None after turn is over
         if not self.desired_pokemon == None:
+            return
+
+        # if desired pokemon is dead, do nothing
+        if self.hps[pokemon] <= 0:
             return
 
         self.desired_pokemon = pokemon
