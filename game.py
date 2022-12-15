@@ -13,6 +13,8 @@ from spritesheet import Spritesheet
 WIDTH, HEIGHT = 800, 400
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("pokéRPS :)")
+pygame_icon = pygame.image.load(os.path.join("assets", "icon.png"))
+pygame.display.set_icon(pygame_icon)
 pygame.init()
 
 # init color consts
@@ -25,6 +27,21 @@ SKY_BLUE = (0,200,255)
 
 # framerate we want the game to use
 FPS = 30
+
+# load in sound effects
+
+tepigCry = pygame.mixer.Sound(os.path.join("assets", "sounds", "tepig.mp3"))
+bulbaCry = pygame.mixer.Sound(os.path.join("assets", "sounds","bulbasaur.mp3"))
+totoCry = pygame.mixer.Sound(os.path.join("assets", "sounds","totodile.mp3"))
+
+# load in music
+
+battleMusic = pygame.mixer.Sound(os.path.join("assets", "sounds","battle.mp3"))
+
+#start music
+battleMusic.set_volume(.1)
+pygame.mixer.Sound.play(battleMusic)
+
 
 
 # load in assets
@@ -220,7 +237,7 @@ class Game():
                     if (self.index1 > 6):  # if removed, bulbasuar will stop moving, like he would in the games. May remove.
                         self.index1 = 0
                     WIN.blit(tepigB_animation[self.index1], (150, 300))
-        #old
+ # NO LONGER NEEDED. REPLACED BY ANIMATION
             # draw the player pokemon's hp
             # hp_text = font.render(f"{self.hps[self.desired_pokemon]}/12", True, BLACK)
             # WIN.blit(hp_text, (150, 250))
@@ -229,29 +246,29 @@ class Game():
         # reassigning this var to change color of hps
         color = BLACK
 
-        def get_color(i, player=True):
-            if player:
-                if self.hps[i] > 7:
-                    color = GREEN
-                elif self.hps[i] > 4:
-                    color = YELLOW
-                elif self.hps[i] > 1:
-                    color = RED
-                else:
-                    color = BLACK
-                return color
-            else:
-                if self.enemy_hps[i] > 7:
-                    color = GREEN
-                elif self.enemy_hps[i] > 4:
-                    color = YELLOW
-                elif self.enemy_hps[i] > 1:
-                    color = RED
-                else:
-                    color = BLACK
-                return color
+        #def get_color(i, player=True):
+            # if player:
+            #     if self.hps[i] > 7:
+            #         color = GREEN
+            #     elif self.hps[i] > 4:
+            #         color = YELLOW
+            #     elif self.hps[i] > 1:
+            #         color = RED
+            #     else:
+            #         color = BLACK
+            #     return color
+            # else:
+            #     if self.enemy_hps[i] > 7:
+            #         color = GREEN
+            #     elif self.enemy_hps[i] > 4:
+            #         color = YELLOW
+            #     elif self.enemy_hps[i] > 1:
+            #         color = RED
+            #     else:
+            #         color = BLACK
+            #     return color
+    #
 
-    # NO LONGER NEEDED. REPLACED BY ANIMATION
         # draw hp of all your pokemon
         # hp_label = font_small.render(f"Your pokemon:", True, BLACK)
         # WIN.blit(hp_label, (20,0))
@@ -301,10 +318,13 @@ class Game():
                 val = random.randint(0,2)  # 0-2 int again, same as player's pokemon
                 self.enemy_pokemon = val
                 if val == 0:
+                    pygame.mixer.Sound.play(bulbaCry)
                     print("enemy chose: bulbasaur")
                 elif val == 1:
+                    pygame.mixer.Sound.play(tepigCry)
                     print("enemy chose: tepig")
                 else:
+                    pygame.mixer.Sound.play(totoCry)
                     print("enemy chose: totodile")
 
             # if computer tries to use a dead pokemon, simply try again
@@ -480,6 +500,11 @@ class Game():
     # maingame loop
     def run(self):
         clock = pygame.time.Clock()
+
+
+
+
+
 
         # condition to allow exiting the game
         run = True
