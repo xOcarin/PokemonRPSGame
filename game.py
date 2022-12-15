@@ -34,20 +34,27 @@ SKY_BLUE = (0,200,255)
 FPS = 30
 
 # load in sound effects
-tepigCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds", "tepig.mp3"))
-bulbaCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","bulbasaur.mp3"))
-totoCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","totodile.mp3"))
-select = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","select.mp3"))
-trade = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","trade.mp3"))
-hit = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","hit.mp3"))
-enhit = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","enhit.mp3"))
-# load in music
 
-battleMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","battle.mp3"))
-menuMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","menu.mp3"))
-victoryMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","victory.mp3"))
-drawMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","draw.mp3"))
-loseMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","lose.mp3"))
+try:
+    tepigCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds", "tepig.mp3"))
+    bulbaCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","bulbasaur.mp3"))
+    totoCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","totodile.mp3"))
+    select = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","select.mp3"))
+    trade = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","trade.mp3"))
+    hit = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","hit.mp3"))
+    enhit = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","enhit.mp3"))
+    # load in music
+
+    battleMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","battle.mp3"))
+    menuMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","menu.mp3"))
+    victoryMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","victory.mp3"))
+    drawMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","draw.mp3"))
+    loseMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","lose.mp3"))
+    soundsLoaded = True
+except:
+    soundsLoaded = False
+
+
 
 
 
@@ -333,13 +340,16 @@ class Game():
                 val = random.randint(0,2)  # 0-2 int again, same as player's pokemon
                 self.enemy_pokemon = val
                 if val == 0:
-                    pygame.mixer.Sound.play(bulbaCry)
+                    if soundsLoaded:
+                        pygame.mixer.Sound.play(bulbaCry)
                     # print("enemy chose: bulbasaur")
                 elif val == 1:
-                    pygame.mixer.Sound.play(tepigCry)
+                    if soundsLoaded:
+                        pygame.mixer.Sound.play(tepigCry)
                     # print("enemy chose: tepig")
                 else:
-                    pygame.mixer.Sound.play(totoCry)
+                    if soundsLoaded:
+                        pygame.mixer.Sound.play(totoCry)
                     # print("enemy chose: totodile")
 
             # if computer tries to use a dead pokemon, simply try again
@@ -437,18 +447,21 @@ class Game():
             self.hps[self.desired_pokemon] -= 0
             self.enemy_hps[self.enemy_pokemon] -= 6
             self.enemy_hpslocation[self.enemy_pokemon] -= 36
-            pygame.mixer.Sound.play(hit)
+            if soundsLoaded:
+                pygame.mixer.Sound.play(hit)
         elif result == 'lose' and not self.results_done:
             self.hps[self.desired_pokemon] -= 6
             self.enemy_hps[self.enemy_pokemon] -= 0
             self.hpslocation[self.desired_pokemon] -= 36
-            pygame.mixer.Sound.play(enhit)
+            if soundsLoaded:
+                pygame.mixer.Sound.play(enhit)
         elif result == 'tie' and not self.results_done:
             self.hps[self.desired_pokemon] -= 3
             self.enemy_hps[self.enemy_pokemon] -= 3
             self.hpslocation[self.enemy_pokemon] -= 18
             self.enemy_hpslocation[self.enemy_pokemon] -= 18
-            pygame.mixer.Sound.play(trade)
+            if soundsLoaded:
+                pygame.mixer.Sound.play(trade)
         self.results_done = True
 
         # normalize hp (don't let it go negative)
@@ -481,19 +494,22 @@ class Game():
 
         if playerDead and enemyDead:
             self.gameResult = 'TIE'
-            pygame.mixer.Sound.stop(battleMusic)
-            pygame.mixer.Sound.play(drawMusic)
+            if soundsLoaded:
+                pygame.mixer.Sound.stop(battleMusic)
+                pygame.mixer.Sound.play(drawMusic)
             print('game over, it was a tie')
         elif playerDead:
             self.gameResult = 'LOSE'
-            pygame.mixer.Sound.stop(battleMusic)
-            pygame.mixer.Sound.play(loseMusic)
+            if soundsLoaded:
+                pygame.mixer.Sound.stop(battleMusic)
+                pygame.mixer.Sound.play(loseMusic)
             print('game over, you lose.')
 
         elif enemyDead:
             self.gameResult = 'WIN'
-            pygame.mixer.Sound.stop(battleMusic)
-            pygame.mixer.Sound.play(victoryMusic)
+            if soundsLoaded:
+                pygame.mixer.Sound.stop(battleMusic)
+                pygame.mixer.Sound.play(victoryMusic)
             print('You win!! Congratulations!!')
 
 
@@ -517,13 +533,16 @@ class Game():
         self.pokemon_chosen_time = self.global_timer
         if pokemon == 0:
             # print("you chose: bulbasaur")
-            pygame.mixer.Sound.play(bulbaCry)
+            if soundsLoaded:
+                pygame.mixer.Sound.play(bulbaCry)
         elif pokemon == 1:
             # print("you chose: tepig")
-            pygame.mixer.Sound.play(tepigCry)
+            if soundsLoaded:
+                pygame.mixer.Sound.play(tepigCry)
         else:
             # print("you chose: totodile")
-            pygame.mixer.Sound.play(totoCry)
+            if soundsLoaded:
+                pygame.mixer.Sound.play(totoCry)
 
 
     # maingame loop
@@ -531,7 +550,8 @@ class Game():
         clock = pygame.time.Clock()
         #play menu music
         menuMusic.set_volume(.1)
-        pygame.mixer.Sound.play(menuMusic)
+        if soundsLoaded:
+            pygame.mixer.Sound.play(menuMusic)
         titlescreen = True
         while(titlescreen):
             global checkt
@@ -553,12 +573,14 @@ class Game():
                 # if the player quits
             # so the user clicked, and by any change the mouse's position was on the buttons
             if (clicked and checkCollisions(mouseX, mouseY, 3, 3, 260, 316, 120, 45)):
-                pygame.mixer.Sound.play(select)
+                if soundsLoaded:
+                    pygame.mixer.Sound.play(select)
                 clicked = False
                 titlescreen = False
             if (clicked and checkCollisions(mouseX, mouseY, 3, 3, 420, 326, 120, 45)):
                 tut = True
-                pygame.mixer.Sound.play(select)
+                if soundsLoaded:
+                    pygame.mixer.Sound.play(select)
                 while tut:
                     clock.tick(FPS)
                     self.global_timer += 1
@@ -577,7 +599,8 @@ class Game():
                     WIN.blit(TUT1, (50, 50))
                     if (clicked and checkCollisions(mouseX, mouseY, 3, 3, 557, 257, 120, 45)):
                         tut2 = True
-                        pygame.mixer.Sound.play(select)
+                        if soundsLoaded:
+                            pygame.mixer.Sound.play(select)
                         while tut2:
                             clock.tick(FPS)
                             self.global_timer += 1
@@ -596,7 +619,8 @@ class Game():
                             WIN.blit(TUT2, (50, 50))
                             if (clicked and checkCollisions(mouseX, mouseY, 3, 3, 557, 257, 120, 45)):
                                 tut3 = True
-                                pygame.mixer.Sound.play(select)
+                                if soundsLoaded:
+                                    pygame.mixer.Sound.play(select)
                                 while tut3:
                                     clock.tick(FPS)
                                     self.global_timer += 1
@@ -614,7 +638,8 @@ class Game():
                                             sys.exit()
                                     WIN.blit(TUT3, (50, 50))
                                     if (clicked and checkCollisions(mouseX, mouseY, 3, 3, 557, 257, 120, 45)):
-                                        pygame.mixer.Sound.play(select)
+                                        if soundsLoaded:
+                                            pygame.mixer.Sound.play(select)
                                         checkt = True
                                         break
                                     pygame.display.update()
@@ -638,9 +663,10 @@ class Game():
             pygame.display.update()
 
         # start music
-        pygame.mixer.Sound.stop(menuMusic)
-        battleMusic.set_volume(.1)
-        pygame.mixer.Sound.play(battleMusic)
+        if soundsLoaded:
+            pygame.mixer.Sound.stop(menuMusic)
+            battleMusic.set_volume(.1)
+            pygame.mixer.Sound.play(battleMusic)
         # condition to allow exiting the game
         run = True
         self.inGame = True
