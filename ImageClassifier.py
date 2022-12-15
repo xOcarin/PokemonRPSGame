@@ -35,7 +35,7 @@ class ImageClassifier:
             descriptList.append(descriptor)
         return descriptList
 
-    def findID(self, img, thresh=15):
+    def findID(self, img, thresh=20):
         points2, descriptor2 = self.sift.detectAndCompute(img, None)
         bf = cv2.BFMatcher()
         matchList = []

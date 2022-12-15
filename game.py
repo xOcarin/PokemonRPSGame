@@ -26,8 +26,19 @@ SKY_BLUE = (0,200,255)
 # framerate we want the game to use
 FPS = 30
 
+
 # load in assets
 BACKGROUND = pygame.image.load(os.path.join("assets", "background.png"))
+OVERLAY = pygame.image.load(os.path.join("assets", "overlay.png"))
+OVERLAY = pygame.image.load(os.path.join("assets", "overlay.png"))
+H1 = pygame.image.load(os.path.join("assets", "r1.png"))
+H2 = pygame.image.load(os.path.join("assets", "r2.png"))
+H3 = pygame.image.load(os.path.join("assets", "r3.png"))
+H4 = pygame.image.load(os.path.join("assets", "r4.png"))
+H5 = pygame.image.load(os.path.join("assets", "r5.png"))
+H6 = pygame.image.load(os.path.join("assets", "r6.png"))
+
+
 _bulbasaur = pygame.image.load(os.path.join("data", "cards", "bulbasaur_card.png"))
 _tepig = pygame.image.load(os.path.join("data", "cards", "tepig_card.png"))
 _tododile = pygame.image.load(os.path.join("data", "cards", "tododile_card.png"))
@@ -102,8 +113,10 @@ class Game():
 
         # holds hp of your pokemon
         # like usual, 0 is bulbasaur, 1 is tepig, 2 is totodile
-        self.hps = [10] * 3
-        self.enemy_hps = [10] * 3
+        self.hps = [12] * 3
+        self.enemy_hps = [12] * 3
+        self.hpslocation = [628] * 3
+        self.enemy_hpslocation = [124] * 3
 
 
         # easy but unclean way to keep track of if results have been calculated (hp subtracted)
@@ -136,6 +149,23 @@ class Game():
 
         # blit draws over the screen (img, coords)
         WIN.blit(BACKGROUND, (0,0))
+        WIN.blit(H1, (self.enemy_hpslocation[2], 12))
+        WIN.blit(H2, (self.enemy_hpslocation[0], 42))
+        WIN.blit(H3, (self.enemy_hpslocation[1], 73))
+        WIN.blit(H4, (self.hpslocation[2], 321))
+        WIN.blit(H5, (self.hpslocation[0], 351))
+        WIN.blit(H6, (self.hpslocation[1], 379))
+        WIN.blit(OVERLAY, (0, 0))
+        #print('ur hp loco', self.hpslocation[0],self.hpslocation[1],self.hpslocation[2])
+        print('en hp loco', self.enemy_hpslocation[0], self.enemy_hpslocation[1], self.enemy_hpslocation[2])
+        #coords for health bar for animation
+        lHealth1 = 124
+        lHealth2 = 124
+        lHealth3 = 124
+        rHealth1 = 628
+        rHealth2 = 628
+        rHealth3 = 628
+
 
         # check if game is over, if so, draw results and ignore the rest of this function
         if not self.gameResult == None:
@@ -162,7 +192,7 @@ class Game():
 
                 WIN.blit(bulbaB_animation[self.index1], (150, 300))
 
-            # TODO: change to totodileBack animation
+
             elif choice == TOTODILE:
 
                 if self.index1 < 10:
@@ -176,7 +206,7 @@ class Game():
 
                 WIN.blit(totoB_animation[self.index1], (150, 300))
 
-            # TODO: change to tepigBack animation
+
             elif choice == TEPIG:
 
                 if self.index1 < 7:
@@ -190,10 +220,10 @@ class Game():
                     if (self.index1 > 6):  # if removed, bulbasuar will stop moving, like he would in the games. May remove.
                         self.index1 = 0
                     WIN.blit(tepigB_animation[self.index1], (150, 300))
-
+        #old
             # draw the player pokemon's hp
-            hp_text = font.render(f"{self.hps[self.desired_pokemon]}/10", True, BLACK)
-            WIN.blit(hp_text, (150, 250))
+            # hp_text = font.render(f"{self.hps[self.desired_pokemon]}/12", True, BLACK)
+            # WIN.blit(hp_text, (150, 250))
 
 
         # reassigning this var to change color of hps
@@ -221,26 +251,26 @@ class Game():
                     color = BLACK
                 return color
 
-
+    # NO LONGER NEEDED. REPLACED BY ANIMATION
         # draw hp of all your pokemon
-        hp_label = font_small.render(f"Your pokemon:", True, BLACK)
-        WIN.blit(hp_label, (20,0))
-        bulbasaur_hp = font_small.render(f"bulbasaur: {self.hps[0]}/10", True, get_color(0))
-        WIN.blit(bulbasaur_hp, (20,35))
-        tepig_hp = font_small.render(f"tepig: {self.hps[1]}/10", True, get_color(1))
-        WIN.blit(tepig_hp, (20,60))
-        totodile_hp = font_small.render(f"totodile: {self.hps[2]}/10", True, get_color(2))
-        WIN.blit(totodile_hp, (20,85))
+        # hp_label = font_small.render(f"Your pokemon:", True, BLACK)
+        # WIN.blit(hp_label, (20,0))
+        # bulbasaur_hp = font_small.render(f"bulbasaur: {self.hps[0]}/10", True, get_color(0))
+        # WIN.blit(bulbasaur_hp, (20,35))
+        # tepig_hp = font_small.render(f"tepig: {self.hps[1]}/10", True, get_color(1))
+        # WIN.blit(tepig_hp, (20,60))
+        # totodile_hp = font_small.render(f"totodile: {self.hps[2]}/10", True, get_color(2))
+        # WIN.blit(totodile_hp, (20,85))
 
         # draw hp of enemy pokemon
-        enemy_hp_label = font_small.render(f"Enemy pokemon:", True, BLACK)
-        WIN.blit(enemy_hp_label, (640, 0))
-        enemy_bulbasaur_hp = font_small.render(f"bulbasaur:{self.enemy_hps[0]}/10", True, get_color(0, player=False))
-        WIN.blit(enemy_bulbasaur_hp, (640,35))
-        enemy_tepig_hp = font_small.render(f"tepig: {self.enemy_hps[1]}/10", True, get_color(1, player=False))
-        WIN.blit(enemy_tepig_hp, (640,60))
-        enemy_totodile_hp = font_small.render(f"totodile: {self.enemy_hps[2]}/10", True, get_color(2, player=False))
-        WIN.blit(enemy_totodile_hp, (640,85))
+        # enemy_hp_label = font_small.render(f"Enemy pokemon:", True, BLACK)
+        # WIN.blit(enemy_hp_label, (640, 0))
+        # enemy_bulbasaur_hp = font_small.render(f"bulbasaur:{self.enemy_hps[0]}/10", True, get_color(0, player=False))
+        # WIN.blit(enemy_bulbasaur_hp, (640,35))
+        # enemy_tepig_hp = font_small.render(f"tepig: {self.enemy_hps[1]}/10", True, get_color(1, player=False))
+        # WIN.blit(enemy_tepig_hp, (640,60))
+        # enemy_totodile_hp = font_small.render(f"totodile: {self.enemy_hps[2]}/10", True, get_color(2, player=False))
+        # WIN.blit(enemy_totodile_hp, (640,85))
 
         
 
@@ -337,10 +367,10 @@ class Game():
 
                 WIN.blit(tepigF_animation[self.index], (550, 150))
 
-
+    #old
         # after pokemon is drawn, also draw its hp
-        hp_text = font.render(f"{self.enemy_hps[self.enemy_pokemon]}/10", True, BLACK)
-        WIN.blit(hp_text,(550, 100))
+        # hp_text = font.render(f"{self.enemy_hps[self.enemy_pokemon]}/12", True, BLACK)
+        # WIN.blit(hp_text,(550, 100))
 
     def _draw_results(self):
         if self.pokemon_chosen_time == 0 or self.enemy_pokemon == None:
@@ -369,14 +399,18 @@ class Game():
         
         # adjust health from result of the battle
         if result == 'win' and not self.results_done:
-            self.hps[self.desired_pokemon] -= 2
+            self.hps[self.desired_pokemon] -= 0
             self.enemy_hps[self.enemy_pokemon] -= 6
+            self.enemy_hpslocation[self.enemy_pokemon] -= 36
         elif result == 'lose' and not self.results_done:
             self.hps[self.desired_pokemon] -= 6
-            self.enemy_hps[self.enemy_pokemon] -= 2
+            self.enemy_hps[self.enemy_pokemon] -= 0
+            self.hpslocation[self.desired_pokemon] -= 36
         elif result == 'tie' and not self.results_done:
-            self.hps[self.desired_pokemon] -= 4
-            self.enemy_hps[self.enemy_pokemon] -= 4
+            self.hps[self.desired_pokemon] -= 3
+            self.enemy_hps[self.enemy_pokemon] -= 3
+            self.hpslocation[self.enemy_pokemon] -= 18
+            self.enemy_hpslocation[self.enemy_pokemon] -= 18
         self.results_done = True
 
         # normalize hp (don't let it go negative)
