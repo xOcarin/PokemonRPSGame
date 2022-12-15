@@ -4,6 +4,8 @@ import time
 import threading
 import random
 from spritesheet import Spritesheet
+import sys
+from utils import checkCollisions
 
 # link to tutorial i used:
 # https://youtu.be/jO6qQDNa2UY
@@ -17,6 +19,8 @@ pygame_icon = pygame.image.load(os.path.join("assets", "icon.png"))
 pygame.display.set_icon(pygame_icon)
 pygame.init()
 
+#few title screen vars
+y = 0
 # init color consts
 WHITE = (255,255,255)
 BLACK = (0,0,0)
@@ -38,14 +42,13 @@ totoCry = pygame.mixer.Sound(os.path.join("assets", "sounds","totodile.mp3"))
 
 battleMusic = pygame.mixer.Sound(os.path.join("assets", "sounds","battle.mp3"))
 
-#start music
-battleMusic.set_volume(.1)
-pygame.mixer.Sound.play(battleMusic)
+
 
 
 
 # load in assets
 BACKGROUND = pygame.image.load(os.path.join("assets", "background.png"))
+TITLESCREEN = pygame.image.load(os.path.join("assets", "titlescreen.png"))
 OVERLAY = pygame.image.load(os.path.join("assets", "overlay.png"))
 OVERLAY = pygame.image.load(os.path.join("assets", "overlay.png"))
 H1 = pygame.image.load(os.path.join("assets", "r1.png"))
@@ -495,17 +498,45 @@ class Game():
         else:
             print("you chose: totodile")
 
-    
 
     # maingame loop
     def run(self):
         clock = pygame.time.Clock()
+        titlescreen = True
+        while(titlescreen):
+            clock.tick(FPS)
+            self.global_timer += 1
+            # get the position of the mouse
+            mouseX, mouseY = pygame.mouse.get_pos()
+            # getting the keys pressed
+            clicked = False
+            # checking events
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                    clicked = True
+                # if the player quits
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                # if the player quits
+            # so the user clicked, and by any change the mouse's position was on the buttons
+            if (clicked and checkCollisions(mouseX, mouseY, 3, 3, 256, 282, 378, 325)):
+                titlescreen = False
 
 
+            global y
+            while y > -360:
+                WIN.fill(WHITE)
+                WIN.blit(TITLESCREEN, (0,y))
+                y = y - .75
+                print(y)
+                pygame.display.update()
+            WIN.blit(TITLESCREEN, (0, -360))
+            pygame.display.update()
 
-
-
-
+        # start music
+        battleMusic.set_volume(.1)
+        pygame.mixer.Sound.play(battleMusic)
         # condition to allow exiting the game
         run = True
         while(run):
