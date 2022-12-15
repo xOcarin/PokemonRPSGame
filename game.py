@@ -37,10 +37,12 @@ FPS = 30
 tepigCry = pygame.mixer.Sound(os.path.join("assets", "sounds", "tepig.mp3"))
 bulbaCry = pygame.mixer.Sound(os.path.join("assets", "sounds","bulbasaur.mp3"))
 totoCry = pygame.mixer.Sound(os.path.join("assets", "sounds","totodile.mp3"))
-
+select = pygame.mixer.Sound(os.path.join("assets", "sounds","select.mp3"))
 # load in music
 
 battleMusic = pygame.mixer.Sound(os.path.join("assets", "sounds","battle.mp3"))
+menuMusic = pygame.mixer.Sound(os.path.join("assets", "sounds","menu.mp3"))
+victoryMusic = pygame.mixer.Sound(os.path.join("assets", "sounds","victory.mp3"))
 
 
 
@@ -49,6 +51,9 @@ battleMusic = pygame.mixer.Sound(os.path.join("assets", "sounds","battle.mp3"))
 # load in assets
 BACKGROUND = pygame.image.load(os.path.join("assets", "background.png"))
 TITLESCREEN = pygame.image.load(os.path.join("assets", "titlescreen.png"))
+TUT1 = pygame.image.load(os.path.join("assets", "tut1.png"))
+TUT2 = pygame.image.load(os.path.join("assets", "tut2.png"))
+TUT3 = pygame.image.load(os.path.join("assets", "tut3.png"))
 OVERLAY = pygame.image.load(os.path.join("assets", "overlay.png"))
 OVERLAY = pygame.image.load(os.path.join("assets", "overlay.png"))
 H1 = pygame.image.load(os.path.join("assets", "r1.png"))
@@ -215,13 +220,13 @@ class Game():
 
             elif choice == TOTODILE:
 
-                if self.index1 < 10:
+                if self.index1 < 9:
                     self.skip1 = self.skip1 + .5
 
                     if self.skip1 % 2 == 0:  # used to artificially slow down the animation
                         self.index1 = self.index1 + 1
 
-                    if (self.index1 > 9):  # if removed, bulbasuar will stop moving, like he would in the games. May remove.
+                    if (self.index1 > 7):  # if removed, bulbasuar will stop moving, like he would in the games. May remove.
                         self.index1 = 0
 
                 WIN.blit(totoB_animation[self.index1], (150, 300))
@@ -466,13 +471,17 @@ class Game():
 
         if playerDead and enemyDead:
             self.gameResult = 'TIE'
+            pygame.mixer.Sound.stop(battleMusic)
             print('game over, it was a tie')
         elif playerDead:
             self.gameResult = 'LOSE'
+            pygame.mixer.Sound.stop(battleMusic)
             print('game over, you lose.')
 
         elif enemyDead:
             self.gameResult = 'WIN'
+            pygame.mixer.Sound.stop(battleMusic)
+            pygame.mixer.Sound.play(victoryMusic)
             print('You win!! Congratulations!!')
 
 
@@ -502,6 +511,9 @@ class Game():
     # maingame loop
     def run(self):
         clock = pygame.time.Clock()
+        #play menu music
+        menuMusic.set_volume(.1)
+        pygame.mixer.Sound.play(menuMusic)
         titlescreen = True
         while(titlescreen):
             clock.tick(FPS)
@@ -520,9 +532,37 @@ class Game():
                     sys.exit()
                 # if the player quits
             # so the user clicked, and by any change the mouse's position was on the buttons
-            if (clicked and checkCollisions(mouseX, mouseY, 3, 3, 256, 282, 378, 325)):
+            if (clicked and checkCollisions(mouseX, mouseY, 3, 3, 210, 326, 120, 45)):
+                pygame.mixer.Sound.play(select)
+                clicked = False
                 titlescreen = False
-
+            if (clicked and checkCollisions(mouseX, mouseY, 3, 3, 420, 326, 120, 45)):
+                tut = True
+                pygame.mixer.Sound.play(select)
+                while tut:
+                    clock.tick(FPS)
+                    self.global_timer += 1
+                    WIN.blit(TITLESCREEN, (0, -360))
+                    WIN.blit(TUT1, (50, 50))
+                    print('AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH')
+                    pygame.display.update()
+                    if (checkCollisions(mouseX, mouseY, 3, 3, 557, 300, 120, 45)):
+                        print('made it ')
+                        tut2 = True
+                        pygame.mixer.Sound.play(select)
+                        while tut2:
+                            WIN.blit(TITLESCREEN, (0, -360))
+                            WIN.blit(TUT2, (50, 50))
+                            pygame.display.update()
+                            if (clicked and checkCollisions(mouseX, mouseY, 3, 3, 375, 326, 120, 45)):
+                                tut3 = True
+                                pygame.mixer.Sound.play(select)
+                                while tut3:
+                                    WIN.blit(TITLESCREEN, (0, -360))
+                                    WIN.blit(TUT3, (50, 50))
+                                    pygame.display.update()
+                                    if (clicked and checkCollisions(mouseX, mouseY, 3, 3, 375, 326, 120, 45)):
+                                        break;
 
             global y
             while y > -360:
@@ -535,6 +575,7 @@ class Game():
             pygame.display.update()
 
         # start music
+        pygame.mixer.Sound.stop(menuMusic)
         battleMusic.set_volume(.1)
         pygame.mixer.Sound.play(battleMusic)
         # condition to allow exiting the game
