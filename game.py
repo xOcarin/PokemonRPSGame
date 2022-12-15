@@ -18,8 +18,9 @@ pygame.init()
 # init color consts
 WHITE = (255,255,255)
 BLACK = (0,0,0)
-GREEN = (0,255,0)
+GREEN = (56, 175, 43)
 RED = (255,0,0)
+YELLOW = (220, 203, 107)
 SKY_BLUE = (0,200,255)
 
 # framerate we want the game to use
@@ -195,24 +196,50 @@ class Game():
             WIN.blit(hp_text, (150, 250))
 
 
+        # reassigning this var to change color of hps
+        color = BLACK
+
+        def get_color(i, player=True):
+            if player:
+                if self.hps[i] > 7:
+                    color = GREEN
+                elif self.hps[i] > 4:
+                    color = YELLOW
+                elif self.hps[i] > 1:
+                    color = RED
+                else:
+                    color = BLACK
+                return color
+            else:
+                if self.enemy_hps[i] > 7:
+                    color = GREEN
+                elif self.enemy_hps[i] > 4:
+                    color = YELLOW
+                elif self.enemy_hps[i] > 1:
+                    color = RED
+                else:
+                    color = BLACK
+                return color
+
+
         # draw hp of all your pokemon
         hp_label = font_small.render(f"Your pokemon:", True, BLACK)
         WIN.blit(hp_label, (20,0))
-        bulbasaur_hp = font_small.render(f"bulbasaur: {self.hps[0]}/10", True, BLACK)
+        bulbasaur_hp = font_small.render(f"bulbasaur: {self.hps[0]}/10", True, get_color(0))
         WIN.blit(bulbasaur_hp, (20,35))
-        tepig_hp = font_small.render(f"tepig: {self.hps[1]}/10", True, BLACK)
+        tepig_hp = font_small.render(f"tepig: {self.hps[1]}/10", True, get_color(1))
         WIN.blit(tepig_hp, (20,60))
-        totodile_hp = font_small.render(f"totodile: {self.hps[2]}/10", True, BLACK)
+        totodile_hp = font_small.render(f"totodile: {self.hps[2]}/10", True, get_color(2))
         WIN.blit(totodile_hp, (20,85))
 
         # draw hp of enemy pokemon
         enemy_hp_label = font_small.render(f"Enemy pokemon:", True, BLACK)
         WIN.blit(enemy_hp_label, (640, 0))
-        enemy_bulbasaur_hp = font_small.render(f"bulbasaur:{self.enemy_hps[0]}/10", True, BLACK)
+        enemy_bulbasaur_hp = font_small.render(f"bulbasaur:{self.enemy_hps[0]}/10", True, get_color(0, player=False))
         WIN.blit(enemy_bulbasaur_hp, (640,35))
-        enemy_tepig_hp = font_small.render(f"tepig: {self.enemy_hps[1]}/10", True, BLACK)
+        enemy_tepig_hp = font_small.render(f"tepig: {self.enemy_hps[1]}/10", True, get_color(1, player=False))
         WIN.blit(enemy_tepig_hp, (640,60))
-        enemy_totodile_hp = font_small.render(f"totodile: {self.enemy_hps[2]}/10", True, BLACK)
+        enemy_totodile_hp = font_small.render(f"totodile: {self.enemy_hps[2]}/10", True, get_color(2, player=False))
         WIN.blit(enemy_totodile_hp, (640,85))
 
         
