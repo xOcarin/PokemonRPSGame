@@ -238,16 +238,18 @@ class Game():
 
 
             elif choice == TEPIG:
-
+                if self.index1 >= 7:
+                    self.index1 = 0
+                
                 if self.index1 < 7:
                     self.skip1 = self.skip1 + .5
-                    if self.index > 6:
-                        self.index = 0
+                    if self.index1 > 6:
+                        self.index1 = 0
 
                     if self.skip1 % 2 == 0:  # used to artificially slow down the animation
                         self.index1 = self.index1 + 1
 
-                    if (self.index1 > 6):
+                    if (self.index1 > 4):
                         self.index1 = 0
                     WIN.blit(tepigB_animation[self.index1], (150, 300))
  # NO LONGER NEEDED. REPLACED BY ANIMATION
