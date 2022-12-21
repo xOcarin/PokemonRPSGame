@@ -29,7 +29,7 @@ if __name__ == '__main__':
                 val = 2
         game.choose_pokemon(val)
 
-    ic = ic_thread(whenPokemonDetected);
+    ic = ic_thread(whenPokemonDetected)
     ic.start()
 
     game.run()

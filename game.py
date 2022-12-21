@@ -36,20 +36,20 @@ FPS = 30
 # load in sound effects
 
 try:
-    tepigCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds", "tepig.mp3"))
-    bulbaCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","bulbasaur.mp3"))
-    totoCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","totodile.mp3"))
-    select = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","select.mp3"))
-    trade = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","trade.mp3"))
-    hit = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","hit.mp3"))
-    enhit = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","enhit.mp3"))
+    tepigCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds", "tepig.wav"))
+    bulbaCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","bulbasaur.wav"))
+    totoCry = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","totodile.wav"))
+    select = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","select.wav"))
+    trade = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","trade.wav"))
+    hit = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","hit.wav"))
+    enhit = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","enhit.wav"))
     # load in music
 
-    battleMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","battle.mp3"))
-    menuMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","menu.mp3"))
-    victoryMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","victory.mp3"))
-    drawMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","draw.mp3"))
-    loseMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","lose.mp3"))
+    battleMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","battle.wav"))
+    menuMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","menu.wav"))
+    victoryMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","victory.wav"))
+    drawMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","draw.wav"))
+    loseMusic = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "assets", "sounds","lose.wav"))
     soundsLoaded = True
 except:
     soundsLoaded = False
