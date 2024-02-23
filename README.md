@@ -1,6 +1,6 @@
 ﻿# PokéRPS
+![prlogo](https://github.com/xOcarin/PokemonRPSGame/assets/119756949/da117398-9fd3-4bfd-8382-9c5d91e94a13)
 
-### Hunter Kalinoski & Cameron Ware
 
 <br>
 
@@ -21,3 +21,5 @@ Requirements file shows all packages needed for the project to run.
 There is a how-to/tutorial section in the main menu to explain how to play.
 
 Goodluck!
+
+Demo video availible here: https://www.youtube.com/watch?v=Amsaed5PcQ4
