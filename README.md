@@ -22,4 +22,4 @@ There is a how-to/tutorial section in the main menu to explain how to play.
 
 Goodluck!
 
-Demo video availible here: https://www.youtube.com/watch?v=Amsaed5PcQ4
+# View the demo video here: https://www.youtube.com/watch?v=Amsaed5PcQ4
